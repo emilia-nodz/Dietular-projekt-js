@@ -70,13 +70,13 @@
         }
       </div>
 
-      <div class="form-thing"><label for="allergens" class="label" >Allergens:</label>
+      <!-- <div class="form-thing"><label for="allergens" class="label" >Allergens:</label>
         <select class="allergen" formControlName="allergens" multiple>
           @for(alle of allergensList; track $index) {
             <option [value]="alle.id">{{alle.name}}</option>
           }
         </select>
-      </div>
+      </div> -->
 
       <div class="form-thing">
         <input [disabled]="!formModel.valid" type="submit" value="Add item" class="btn-view">

@@ -8,7 +8,7 @@ import {Allergen} from '../models/allergen.model';
 })
 export class AllergenService {
 
-  private apiUrl = 'http://localhost:8000/app/allergen/';
+  private apiUrl = 'http://localhost:8000/api/allergen/';
 
   constructor(private http: HttpClient) {}
 
@@ -39,14 +39,14 @@ export class AllergenService {
     );
   }
 
-  updateAllergen(Allergen: Allergen): Observable<Allergen> {
-    return this.http.patch<Allergen>(`${this.apiUrl}${Allergen.id}/`, Allergen).pipe(
-      catchError(error => {
-        console.error('Error deleting allergen:', error);
-        return throwError(() => new Error('Error deleting allergen'));
-      })
-    );
-  }
+  // updateAllergen(Allergen: Allergen): Observable<Allergen> {
+  //   return this.http.patch<Allergen>(`${this.apiUrl}${Allergen.id}/`, Allergen).pipe(
+  //     catchError(error => {
+  //       console.error('Error deleting allergen:', error);
+  //       return throwError(() => new Error('Error deleting allergen'));
+  //     })
+  //   );
+  // }
 
 
 }

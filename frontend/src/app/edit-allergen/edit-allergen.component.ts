@@ -54,15 +54,15 @@ export class EditAllergenComponent {
     console.log('submitting ',this.formModel.value.name);
     if(this.index!==undefined){
       let updatedAllergen: Allergen = {
-        id: this.currentAllergen.id,
+        // id: this.currentAllergen.id,
         name: this.formModel.value.name
       };
 
-      this.allergenService.updateAllergen(updatedAllergen).subscribe(() => {
-        console.log('Updated allergen:', updatedAllergen);
-        this.editInList.emit(updatedAllergen);
-        location.reload();
-      });
+      // this.allergenService.updateAllergen(updatedAllergen).subscribe(() => {
+      //   console.log('Updated allergen:', updatedAllergen);
+      //   this.editInList.emit(updatedAllergen);
+      //   location.reload();
+      // });
     }
   }
 

@@ -6,7 +6,7 @@
           @for (allergen of allergens; track $index) {
             <li class="list-allergen-container">
               <p class="name">{{allergen.name}}</p>
-              <button class="btn-view" (click)="update(allergen.id)"> Edit </button>
+              <!-- <button class="btn-view" (click)="update(allergen.id)"> Edit </button>
               @if(updateChecker === allergen.id) {
                 <app-edit-allergen [index]="$index"></app-edit-allergen>
               }
@@ -23,7 +23,7 @@
                     <button class="btn-view" (click)="undo()">No</button>
                   </div>
                 </div>
-              }
+              } -->
              
             </li>
           }
