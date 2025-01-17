@@ -6,12 +6,12 @@
 [Status](#status) - Current status of development of our project <br>
 
 ## Introduction
-Dietular is an application made by 
+Dietular is an application made by <br>
 [emilia-nodz](https://github.com/emilia-nodz) <br>
 [TamaTamaTamaTamaTama](https://github.com/TamaTamaTamaTamaTama) <br>
 
 ## Technologies
-Frontend development: React v.
+Frontend development: Angular v.
 Backend development: Node.js v.
 
 ## Launch
