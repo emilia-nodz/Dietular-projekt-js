@@ -1,0 +1,66 @@
+<div class="main-container">
+    <h1>Add meal</h1>
+    <div class="form-container">
+      <form [formGroup]="formModel" (ngSubmit)="submitForm()">
+        <div class="form-thing">
+          <label class="label">Name</label>
+          <input type="text" formControlName="name" placeholder="Name">
+          @if(formModel.controls['name'].errors?.['required']) {
+            <span class="error">Meal name is required</span>
+          } @else if(formModel.controls['name'].errors?.['maxlength']!= null) {
+            <span class="error">Max length name is {{formModel.controls['name'].errors?.['maxlength']['requiredLength']}}</span>
+          }
+        </div>
+  
+        <div class="form-thing">
+          <label class="label">Description</label>
+          <input type="text" formControlName="desc" placeholder="Description">
+          @if(formModel.controls['desc'].errors?.['required']) {
+            <span class="error">Description is required</span>
+          } 
+        </div>
+  
+        <div class="form-thing">
+          <label class="label">Number of portions</label>
+          <input type="number" placeholder="Number of portions" formControlName="portionNo">
+          @if(formModel.controls['portionNo'].errors?.['required']) {
+            <span class="error">Value is required</span>
+          } @else if(formModel.controls['portionNo'].hasError('positiveNumberValidator')) {
+            <span class="error">Value must be a number grater than 0</span>
+          }
+        </div>
+  
+        <div class="form-thing">
+          <label class="label">Weight of a portion</label>
+          <input type="number" placeholder="Weight of a portion (g)" formControlName="portionWe">
+          @if(formModel.controls['portionWe'].errors?.['required']) {
+            <span class="error">Value is required</span>
+          } @else if(formModel.controls['portionWe'].hasError('positiveNumberValidator')) {
+            <span class="error">Value must be a number grater than 0</span>
+          }
+        </div>
+  
+        <div class="form-thing">
+          <label class="label">Calories per portion</label>
+          <input type="number" placeholder="Calories per portion (kCal)" formControlName="portionCal">
+          @if(formModel.controls['portionCal'].errors?.['required']) {
+            <span class="error">Value is required</span>
+          } @else if(formModel.controls['portionCal'].hasError('positiveNumberValidator')) {
+            <span class="error">Value must be a number grater than 0</span>
+          }
+        </div>
+
+        <div class="form-thing"><label for="items" class="label" >Items:</label>
+          <select class="item" formControlName="items" multiple>
+            @for(i of itemList; track $index) {
+              <option [value]="i.id">{{i.name}}</option>
+            }
+          </select>
+        </div>
+  
+        <div class="form-thing">
+          <input [disabled]="!formModel.valid" type="submit" value="Add meal" class="btn-view">
+        </div>
+      </form>
+    </div>
+  </div>
