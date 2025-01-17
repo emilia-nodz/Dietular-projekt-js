@@ -68,14 +68,14 @@
             <span class="error">Value must be a number grater than 0</span>
           }
         </div>
-
+<!-- 
         <div class="form-thing"><label for="allergens" class="label" >Allergens:</label>
             <select class="allergen" formControlName="allergens" multiple>
               @for(alle of allergensList; track $index) {
                 <option [value]="alle.id">{{alle.name}}</option>
               }
             </select>
-          </div>
+          </div> -->
   
         <div class="form-buttons">
           <input [disabled]="!formModel.valid" type="submit" value="Update item" class="btn-view">

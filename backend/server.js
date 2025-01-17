@@ -1,24 +1,30 @@
-// Import necessary modules
-const express = require('express');
-const bodyParser = require('body-parser');
-const dotenv = require('dotenv');
+//server.js
 
-// Load environment variables
-dotenv.config();
-
-// Initialize the app
+const express = require("express");
+const cors = require("cors");
 const app = express();
+const allergenRoutes = require('./routes/allergenRoutes');
 
-// Middleware to parse JSON data
-app.use(bodyParser.json());
 
-// Define a basic route
-app.get('/', (req, res) => {
-  res.send('Welcome to my custom Node.js backend!');
-});
 
-// Start the server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
+app.listen(8000, () => {
+    console.log("Server Started at port no. 8000");
+})
+
+//Mongoose library instance
+const mongoose = require("mongoose");
+//URL of MongoDB Database
+const mongoDBURL = "mongodb+srv://javascript:hasloJavaScript@cluster0.r0hyt.mongodb.net/";
+
+app.use(cors());
+app.use(express.json());
+
+app.use('/api/allergen', allergenRoutes);
+
+//connect to Database
+mongoose.connect(mongoDBURL, {
+}).then(() => {
+    console.log('Connected to MongoDB');
+  }).catch(err => {
+    console.error('MongoDB connection error:', err);
+  });

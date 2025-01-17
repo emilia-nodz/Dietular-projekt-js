@@ -1,4 +1,4 @@
 export interface Allergen {
-    id: number,
+    // id: number,
     name: string,   
 }
