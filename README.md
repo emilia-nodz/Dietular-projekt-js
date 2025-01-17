@@ -17,8 +17,10 @@ Backend development: Node.js v.20.18.0  <br>
 ## Launch
 -To launch our frontend server, enter the folder responsible for the angular files (frontend) and start the server  <br>
 cd frontend  <br>
-npm start  <br>
+ng serve  <br>
 -To launch our backend server  <br>
+cd backend  <br>
+npm start  <br>
 
 ## Features
 Dietular aims to allow the users to:  <br>
