@@ -1,5 +1,4 @@
-//server.js
-
+require('dotenv').config()
 const express = require("express");
 const cors = require("cors");
 const app = express();
@@ -11,18 +10,15 @@ app.listen(8000, () => {
     console.log("Server Started at port no. 8000");
 })
 
-//Mongoose library instance
 const mongoose = require("mongoose");
-//URL of MongoDB Database
-const mongoDBURL = "mongodb+srv://javascript:hasloJavaScript@cluster0.r0hyt.mongodb.net/";
+const uri = process.env.MONGO_URI;
 
 app.use(cors());
 app.use(express.json());
 
 app.use('/api/allergen', allergenRoutes);
 
-//connect to Database
-mongoose.connect(mongoDBURL, {
+mongoose.connect(uri, {
 }).then(() => {
     console.log('Connected to MongoDB');
   }).catch(err => {
