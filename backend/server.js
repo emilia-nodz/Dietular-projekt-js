@@ -4,8 +4,6 @@ const cors = require("cors");
 const app = express();
 const allergenRoutes = require('./routes/allergenRoutes');
 
-
-
 app.listen(8000, () => {
     console.log("Server Started at port no. 8000");
 })
