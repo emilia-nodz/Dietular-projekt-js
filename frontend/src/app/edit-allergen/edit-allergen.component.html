@@ -1,0 +1,17 @@
+@if(index !== undefined) {
+    <div class="form-container">
+        <form [formGroup]="formModel" (ngSubmit)="submitForm()">
+            <div class="form-thing">
+                <h3><label>Allergen name:</label></h3>
+                <input id="name" formControlName="name" />
+                @if(formModel.controls['name'].errors?.['maxlength']!= null) {
+                    <span class="error">Max length name is {{formModel.controls['name'].errors?.['maxlength']['requiredLength']}}</span>
+                }
+            </div>
+            <div class="form-buttons">
+                <input [disabled]="!formModel.valid" type="submit" value="Update allergen" class="btn-view">
+                <button class="btn-view2" (click)="cancel()">Cancel</button>
+            </div>
+        </form>
+    </div>
+}

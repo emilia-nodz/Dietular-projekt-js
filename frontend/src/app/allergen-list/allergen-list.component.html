@@ -1,0 +1,32 @@
+<div class="main-container">
+    <h1>Allergen list</h1>
+  
+      <ul>
+        <div class="list-container">
+          @for (allergen of allergens; track $index) {
+            <li class="list-allergen-container">
+              <p class="name">{{allergen.name}}</p>
+              <button class="btn-view" (click)="update(allergen.id)"> Edit </button>
+              @if(updateChecker === allergen.id) {
+                <app-edit-allergen [index]="$index"></app-edit-allergen>
+              }
+              <button class="btn-view2" (click)="showConfirmation(allergen.id)"> Delete </button>
+         
+              @if(checkerForDelete === allergen.id) 
+              {
+                <div class="form-container">
+                  <div class="form-thing">
+                    <h3>Are you sure you want to delete {{allergen.name}}?</h3>
+                  </div>
+                  <div class="form-buttons">
+                    <button class="btn-view2" (click)="deleteThing(allergen.id)">Yes</button>
+                    <button class="btn-view" (click)="undo()">No</button>
+                  </div>
+                </div>
+              }
+             
+            </li>
+          }
+        </div>
+      </ul>
+  </div>

@@ -1,0 +1,37 @@
+<div class="main-container">
+  <h1>Item list</h1>
+
+    <ul>
+      <div class="list-container">
+        @for (item of items; track $index) {
+          <li class="list-item-container">
+            <p class="name">{{item.name}}</p>
+            <p class="description">{{item.description}}</p>
+            <button class="btn-view" (click)="showDetails(item.id)"> View </button>
+            @if(checker === item.id) { 
+              <app-item-details [index]="$index"/>
+            }
+            <button class="btn-view" (click)="update(item.id)"> Edit </button>
+              @if(updateChecker === item.id) {
+                <app-edit-item [index]="$index"></app-edit-item>
+              }
+            <button class="btn-view2" (click)="showConfirmation(item.id)"> Delete </button>
+            
+            @if(checkerfordelete === item.id) 
+            {
+              <div class="form-container">
+                <div class="form-thing">
+                  <h3>Are you sure you want to delete {{item.name}}?</h3>
+                </div>
+                <div class="form-buttons">
+                  <button class="btn-view2" (click)="deleteThing(item.id)">Yes</button>
+                  <button class="btn-view" (click)="undo()">No</button>
+                </div>
+              </div>
+            }
+           
+          </li>
+        }
+      </div>
+    </ul>
+</div>

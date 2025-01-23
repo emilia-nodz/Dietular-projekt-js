@@ -1,0 +1,12 @@
+<ul class="meal-list">
+  @for (meal of filteredMeals; track meal) {
+  <li class="meal-entry" (click)="selectMeal(meal)">
+    <img src="http://localhost:8000/media/icons/diamond-plus.png"
+         alt="{{ meal.name }}"
+         class="meal-icon" />
+    {{ meal.name }}
+  </li>
+  } @empty {
+  <li>No meals available</li>
+  }
+</ul>

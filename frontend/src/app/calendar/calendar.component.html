@@ -1,0 +1,40 @@
+<div class="calendar-container">
+  <div class="calendar-header">
+    <button (click)="prevMonth()">&lt;</button>
+    <span>{{ currentYear }} - {{ currentMonth + 1 }}</span>
+    <button (click)="nextMonth()">&gt;</button>
+  </div>
+
+  <table class="calendar-table">
+    <thead>
+      <tr class="week">
+        <th class="day">Sun</th>
+        <th class="day">Mon</th>
+        <th class="day">Tue</th>
+        <th class="day">Wed</th>
+        <th class="day">Thu</th>
+        <th class="day">Fri</th>
+        <th class="day">Sat</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (week of weeks; track week){
+      <tr class="week">
+        @for (day of week; track day){
+        <td class="day"
+            [class.selectedDay]="isSelectedDay(day)"
+            [class.today]="isToday(day) && !isSelectedDay(day)"
+            [class.current-month]="isCurrentMonth(day)"
+            (click)="dayClick(day)">
+          <span>{{ day?.getDate() }}</span>
+        </td>
+        }
+      </tr>
+      }
+    </tbody>
+  </table>
+  @if (selectedDay){
+  <app-day-detail [day]="selectedDay"></app-day-detail>
+  }
+</div>
+

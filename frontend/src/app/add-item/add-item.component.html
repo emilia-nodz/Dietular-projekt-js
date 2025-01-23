@@ -1,0 +1,86 @@
+<div class="main-container">
+  <h1>Add item</h1>
+  <div class="form-container">
+    <form [formGroup]="formModel" (ngSubmit)="submitForm()">
+      <div class="form-thing">
+        <label class="label">Name</label>
+        <input type="text" class="title" formControlName="name" placeholder="Name">
+        @if(formModel.controls['name'].errors?.['required']) {
+          <span class="error">Item name is required</span>
+        } @else if(formModel.controls['name'].errors?.['maxlength']!= null) {
+          <span class="error">Max length name is {{formModel.controls['name'].errors?.['maxlength']['requiredLength']}}</span>
+        }
+      </div>
+
+      <div class="form-thing">
+        <label class="label">Description</label>
+        <input type="text" class="description" formControlName="desc" placeholder="Description">
+        @if(formModel.controls['desc'].errors?.['required']) {
+          <span class="error">Description is required</span>
+        } 
+      </div>
+
+      <div class="form-thing">
+        <label class="label">Weight</label>
+        <input type="number" class="weight" placeholder="Weight (g)" formControlName="weight">
+        @if(formModel.controls['weight'].errors?.['required']) {
+          <span class="error">Value is required</span>
+        } @else if(formModel.controls['weight'].errors?.['min']!=null) {
+          <span class="error">Value must be a number grater than 0</span>
+        }
+      </div>
+
+      <div class="form-thing">
+        <label class="label">Calories</label>
+        <input type="number" class="calories" placeholder="Calories (kCal)" formControlName="cal">
+        @if(formModel.controls['cal'].errors?.['required']) {
+          <span class="error">Value is required</span>
+        } @else if(formModel.controls['cal'].errors?.['min']!=null) {
+          <span class="error">Value must be a number grater than 0</span>
+        }
+      </div>
+
+      <div class="form-thing">
+        <label class="label">Carbohydrates</label>
+        <input type="number" class="carbs" placeholder="Carbohydrates (g)" formControlName="carbs">
+        @if(formModel.controls['carbs'].errors?.['required']) {
+          <span class="error">Value is required</span>
+        } @else if(formModel.controls['carbs'].errors?.['min']!=null) {
+          <span class="error">Value must be a number grater than 0</span>
+        }
+      </div>
+
+      <div class="form-thing">
+        <label class="label">Protein</label>
+        <input type="number" class="protein" placeholder="Protein (g)" formControlName="protein">
+        @if(formModel.controls['protein'].errors?.['required']) {
+          <span class="error">Value is required</span>
+        } @else if(formModel.controls['protein'].errors?.['min']!=null) {
+          <span class="error">Value must be a number grater than 0</span>
+        }
+      </div>
+
+      <div class="form-thing">
+        <label class="label">Fats</label>
+        <input type="number" min="0" class="fats" placeholder="Fats (g)" formControlName="fats">
+        @if(formModel.controls['fats'].errors?.['required']) {
+          <span class="error">Value is required</span>
+        } @else if(formModel.controls['fats'].errors?.['min']!=null) {
+          <span class="error">Value must be a number grater than 0</span>
+        }
+      </div>
+
+      <div class="form-thing"><label for="allergens" class="label" >Allergens:</label>
+        <select class="allergen" formControlName="allergens" multiple>
+          @for(alle of allergensList; track $index) {
+            <option [value]="alle.id">{{alle.name}}</option>
+          }
+        </select>
+      </div>
+
+      <div class="form-thing">
+        <input [disabled]="!formModel.valid" type="submit" value="Add item" class="btn-view">
+      </div>
+    </form>
+  </div>
+</div>

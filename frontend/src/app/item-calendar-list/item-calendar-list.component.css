@@ -1,0 +1,16 @@
+.item-list {
+  list-style-type: none;
+  padding-left: 30px;
+  margin: 0;
+}
+
+.item-entry {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.item-icon {
+  width: 16px;
+  height: 16px;
+}

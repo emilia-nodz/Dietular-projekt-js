@@ -1,0 +1,12 @@
+@if(index !== undefined) {
+    <p class="numberOfPortions">Number of portions: {{meals[index].numberOfPortions}}</p>
+    <p class="portionWeight">Weight of a portion: {{meals[index].portionWeight}}</p>
+    <p class="caloriesPerPortion">Calories per portion: {{meals[index].caloriesPerPortion}}</p>
+    <p class="items">Items in the meal: 
+        <ol>
+            @for(i of meals[index].item_details; track $index) {
+                <li>{{i.name}}</li>
+                    
+            }
+        </ol>   
+}

@@ -1,0 +1,16 @@
+.meal-list {
+  list-style-type: none;
+  padding-left: 30px;
+  margin: 0;
+}
+
+.meal-entry {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.meal-icon {
+  width: 16px;
+  height: 16px;
+}
