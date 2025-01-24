@@ -1,10 +1,75 @@
-<!-- HTML -->
- <br>
+
+<br>
 <div class="demo-inline-calendar-container">
     <mat-card class="demo-inline-calendar-card">
-      <mat-calendar [(selected)]="selected"></mat-calendar>
+        
+            <mat-calendar [(selected)]="selected" ></mat-calendar>
+                    
     </mat-card>
-    <p>Selected date: {{ selected() }}</p>
-  </div>
+    @if (selected !== null) {
+        <p (click)="convert(selected)">Day {{selected}}</p>
+    }
+    
+    @if(day !== undefined) {
+        <div class="day-detail-container">
+            <h3>Details for {{ day.date | date: 'fullDate' }}</h3>
+            <div class="section">
+              <h4>Items</h4>
+              <ul class="item-list">
+                @for (item of day.item_details; track item){
+                <li class="item-entry" (click)="removeItemFromDay(item)">
+                  - {{item.name}}
+                </li>
+                } @empty{
+                <li>There are no items</li>
+                }
+              </ul>
+              <p (click)="itemClick()"> Show more...</p>
+              @if (showItemDropdown){
+                <div class="dropdown">
+                  <!-- <app-item-calendar-list
+                    [assignedItems]="day.item_details || []" 
+                    (interest)="addItemToDay($event)">
+                  </app-item-calendar-list> -->
+                </div>
+              }
+            </div>
+          
+            <div class="section">
+              <h4>Meals</h4>
+              <ul class="item-list">
+                @for (meal of day.meal_details; track meal){
+                <li class="item-entry">
+                  <img src="http://localhost:8000/media/icons/diamond-minus.png"
+                       alt="{{ meal.name }}"
+                       class="item-icon"
+                       (click)="removeMealFromDay(meal)" />
+                  {{meal.name}}
+                </li>
+                } @empty{
+                <li>There are no items</li>
+                }
+              </ul>
+              <img src="http://localhost:8000/media/icons/circle-ellipsis.png"
+                   alt="Add item"
+                   (click)="mealClick()" />
+              @if (showMealDropdown){
+              <div class="dropdown">
+                <!-- <app-meal-calendar-list
+                  [assignedMeals]="day.meal_details || []"
+                  (interest)="addMealToDay($event)">
+                </app-meal-calendar-list> -->
+              </div>
+              }
+            </div>
+          
+          
+          <button class="btn-view" (click)="saveDay()">
+            {{ 'Save Day' }}
+          </button>
+          </div>
+    }
+    
+</div>
   
   
