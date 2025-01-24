@@ -1,19 +1,22 @@
 <div class="main-container">
+<button class="btn-view" (click)="getfilterchoice()">Filter</button>
+
+<button class="btn-view" (click)="getsortchoice()">Sort</button>
   <h1>Item list</h1>
 
     <ul>
       <div class="list-container">
-        @for (item of items; track $index) {
+        @for (item of filteredItems; track $index) {
           <li class="list-item-container">
             <p class="name">{{item.name}}</p>
             <p class="description">{{item.description}}</p>
-            <button class="btn-view" (click)="showDetails(item.id)"> View </button>
+            <button class="btn-view" (click)="showDetails(item.id, filteredItems)"> View </button>
             @if(checker === item.id) { 
-              <app-item-details [index]="$index"/>
+              <app-item-details [id]="$index" [filtereditems]="filteredItems" />
             }
-            <button class="btn-view" (click)="update(item.id)"> Edit </button>
+            <button class="btn-view" (click)="update(item.id, $index)"> Edit </button>
               @if(updateChecker === item.id) {
-                <app-edit-item [index]="$index"></app-edit-item>
+                <app-edit-item [id]="item.id"></app-edit-item>
               }
             <button class="btn-view2" (click)="showConfirmation(item.id)"> Delete </button>
             
@@ -24,10 +27,39 @@
                   <h3>Are you sure you want to delete {{item.name}}?</h3>
                 </div>
                 <div class="form-buttons">
-                  <button class="btn-view2" (click)="deleteThing(item.id)">Yes</button>
+                  <button class="btn-view2" (click)="deleteThing(item.id, $index)">Yes</button>
                   <button class="btn-view" (click)="undo()">No</button>
                 </div>
               </div>
+            }
+
+            @if(checkerforfilter === true)
+            {
+              <div class="filter-menu">
+                <h3>Select allergens</h3><br>
+                <ul>
+                  @for(allergen of allergens; track $index) {
+                <li class="next">
+                <p>{{allergen.name}}</p>
+                <input type="checkbox" (click)="IncludeAllergen(allergen)">
+                </li>
+              }
+                </ul>
+                <button class="btn-view" (click)="Filter()">Confirm</button>
+                <button class="btn-view2" (click)="turnofffilterchoice()">Undo</button>
+              </div>
+            }
+            @if(checkerforsort === true)
+            {
+             <div class = "filter-menu">
+              <h3>Sort menu:</h3>
+              <button class="btn-view" (click)="sortalphasc()">Sort alphabetically A-Z</button>
+              <button class="btn-view" (click)="sortalphdesc()">Sort alphabetically Z-A</button>
+              <button class="btn-view" (click)="sortprotein()">Sort by most protein</button>
+              <button class="btn-view" (click)="sortcalories()">Sort by least calories</button>
+              <button class="btn-view" (click)="sortfat()">Sort by least fat %</button>
+              <button class="btn-view2" (click)="turnoffsortchoice()">Undo</button>
+             </div> 
             }
            
           </li>
