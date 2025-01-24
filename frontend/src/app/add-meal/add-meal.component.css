@@ -43,6 +43,10 @@
     text-align: center; 
 }
 
+input {
+    border-radius: 4px;
+}
+
 
 .main-container .btn-view {
     background-color: #ECE8E4;

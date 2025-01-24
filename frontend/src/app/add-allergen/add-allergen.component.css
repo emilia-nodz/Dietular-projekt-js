@@ -26,6 +26,11 @@
     align-items: center;
 }
 
+input {
+    border-radius: 4px;
+}
+
+
 .main-container .form-thing {
     display: flex; 
     flex-direction: column; 
