@@ -44,6 +44,7 @@
     border-radius: 8px;
     border-color: #4b3629;
     margin-right: 10px;
+    cursor: pointer;
 }
 
 .main-container .btn-view2 {
@@ -55,8 +56,34 @@
     border-radius: 8px;
     border-color: #4b3629;
     margin-right: 10px;
+    cursor: pointer;
 }
 
+
+.filter-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; 
+    color: white;
+    
+}
+
+.filter-menu p {
+    color: white;
+}
+
+.next {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .form-container {
     color: #4B3629;
     background-color: #cdd9c7;

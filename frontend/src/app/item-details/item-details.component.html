@@ -1,14 +1,18 @@
-@if(index !== undefined) {
-    <p class="weight">Weight: {{ items[index].weight}}</p>
-    <p class="calories">Calories: {{ items[index].calories }}</p>
-    <p class="carbohydrates">Carbohydrates: {{items[index].carbohydrates}}</p>
-    <p class="proteins">Proteins: {{items[index].proteins}}</p>
-    <p class="fats">Fats: {{items[index].fats}}</p>
+
+
+@if(id != undefined)
+{ 
+    
+    <p class="weight">Weight: {{ filtereditems[id].weight}}</p>
+    <p class="calories">Calories: {{ filtereditems[id].calories }}</p>
+    <p class="carbohydrates">Carbohydrates: {{filtereditems[id].carbohydrates}}</p>
+    <p class="proteins">Proteins: {{filtereditems[id].proteins}}</p>
+    <p class="fats">Fats: {{filtereditems[id].fats}}</p>
     <p class="allergens">Allergens:
         <ol>
 
        
-        @for(allergen of items[index].allergen_details; track $index) {
+        @for(allergen of filtereditems[id].allergen_details; track $index) {
            <li>{{allergen.name}}</li> 
         }
     </ol>

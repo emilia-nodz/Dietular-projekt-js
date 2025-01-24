@@ -6,12 +6,13 @@ import { CommonModule } from '@angular/common';
 import { AllergenService } from '../services/allergen.service';
 import { Allergen } from '../models/allergen.model';
 
+
 @Component({
   selector: 'app-edit-item',
   standalone: true,
-  imports: [CommonModule,FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './edit-item.component.html',
-  styleUrl: './edit-item.component.css'
+  styleUrls: ['./edit-item.component.css']
 })
 export class EditItemComponent {
   items: ItemToAdd[] = [];
@@ -23,54 +24,63 @@ export class EditItemComponent {
   @Input() set editItem(newItem: ItemToAdd) {
     this.oldItem = newItem;
     this.currentItem = newItem;
-    this.formModel.patchValue({ name: this.currentItem.name });
-    this.formModel.patchValue({ desc: this.currentItem.description });
-    this.formModel.patchValue({ weight: this.currentItem.weight });
-    this.formModel.patchValue({ cal: this.currentItem.calories });
-    this.formModel.patchValue({ protein: this.currentItem.proteins });
-    this.formModel.patchValue({ carbs: this.currentItem.carbohydrates });
-    this.formModel.patchValue({ fats: this.currentItem.fats });
-    this.formModel.patchValue({ allergens: this.currentItem.allergens });
+    this.formModel.patchValue({
+      name: this.currentItem.name,
+      desc: this.currentItem.description,
+      weight: this.currentItem.weight,
+      cal: this.currentItem.calories,
+      protein: this.currentItem.proteins,
+      carbs: this.currentItem.carbohydrates,
+      fats: this.currentItem.fats,
+      allergens: this.currentItem.allergens
+    });
   }
+
   get editItem(): ItemToAdd {
     return this.oldItem;
   }
 
-  @Output() editInList: EventEmitter<ItemToAdd>=new EventEmitter();
+  @Input() id: number | undefined; 
 
-  @Input() index: number | undefined;
+  @Output() editInList: EventEmitter<ItemToAdd> = new EventEmitter();
 
-  constructor(private allergenService: AllergenService, private itemService: ItemService, private fb: FormBuilder,) {
+  constructor(
+    private allergenService: AllergenService,
+    private itemService: ItemService,
+    private fb: FormBuilder
+  ) {
     this.allergenService.getAllergens().subscribe((alData: Allergen[]) => {
       this.allergensList = alData;
     });
+
+    
     this.itemService.getItemsToAdd().subscribe((data: ItemToAdd[]) => {
-      this.items = data; 
-      console.table(this.items);
-      if (this.index !== undefined) {
-        let item = this.items[this.index];
+      this.items = data;
+      if (this.id !== undefined) {
+        
+        let item = this.items.find(i => i.id === this.id);
         if (item) {
-          this.editItem = item; 
+          this.editItem = item;
         }
       }
     });
-    
+
     this.formModel = this.fb.group({
-      name: new FormControl('',[ Validators.maxLength(50)]),
+      name: new FormControl('', [Validators.maxLength(50)]),
       desc: ['', Validators.required],
-      weight: ['', [Validators.required, Validators.min(Number.MIN_VALUE)]],
-      cal: ['', [Validators.required, Validators.min(Number.MIN_VALUE)]],
-      protein: ['', [Validators.required, Validators.min(Number.MIN_VALUE)]],
-      carbs: ['', [Validators.required, Validators.min(Number.MIN_VALUE)]],
-      fats: ['', [Validators.required, Validators.min(Number.MIN_VALUE)]],
+      weight: ['', [Validators.required, Validators.min(1)]],
+      cal: ['', [Validators.required, Validators.min(1)]],
+      protein: ['', [Validators.required, Validators.min(1)]],
+      carbs: ['', [Validators.required, Validators.min(1)]],
+      fats: ['', [Validators.required, Validators.min(1)]],
       allergens: [[],],
     });
-    
   }
 
   submitForm() {
-    console.log('submitting ',this.formModel.value.name);
-    if(this.index!==undefined){
+    console.log('submitting ', this.formModel.value.name);
+
+    if (this.id !== undefined) {
       let updatedItem: ItemToAdd = {
         id: this.currentItem.id,
         allergens: this.formModel.value.allergens,
@@ -83,22 +93,25 @@ export class EditItemComponent {
         fats: this.formModel.value.fats
       };
 
+      
       this.itemService.updateItem(updatedItem).subscribe(() => {
         console.log('Updated item:', updatedItem);
-        this.editInList.emit(updatedItem);
-        location.reload();
+        this.editInList.emit(updatedItem); 
+        location.reload(); 
       });
     }
   }
 
   cancel() {
-    this.formModel.patchValue({ name: this.oldItem.name });
-    this.formModel.patchValue({ desc: this.oldItem.description });
-    this.formModel.patchValue({ weight: this.oldItem.weight });
-    this.formModel.patchValue({ cal: this.oldItem.calories });
-    this.formModel.patchValue({ protein: this.oldItem.proteins });
-    this.formModel.patchValue({ carbs: this.oldItem.carbohydrates });
-    this.formModel.patchValue({ fats: this.oldItem.fats });
+    this.formModel.patchValue({
+      name: this.oldItem.name,
+      desc: this.oldItem.description,
+      weight: this.oldItem.weight,
+      cal: this.oldItem.calories,
+      protein: this.oldItem.proteins,
+      carbs: this.oldItem.carbohydrates,
+      fats: this.oldItem.fats
+    });
 
     this.editInList.emit();
   }
