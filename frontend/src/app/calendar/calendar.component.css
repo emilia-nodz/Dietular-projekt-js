@@ -1,0 +1,33 @@
+.demo-inline-calendar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #4b3629 !important;
+  }
+
+  ::ng-deep span, ::ng-deep .mat-calendar-body-cell-content {
+    font-weight: bold;
+    color: #4b3629 !important;
+    
+  }
+.mat-calendar-body-cell-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:#cdd9c7;
+}
+    .demo-inline-calendar-card {
+        width: 500px;
+        background-color: #cdd9c7;
+        color: #4b3629 !important;
+        font-weight: bold;
+        padding: 10px;
+    }
+    
+    ::ng-deep .mat-calendar-body-today{
+        border-color: #ebe8e4 !important;
+    }
+    ::ng-deep .mat-calendar-body-selected{
+        border-color: #ebe8e4 !important;
+        background-color: #ebe8e4 !important;
+    }
