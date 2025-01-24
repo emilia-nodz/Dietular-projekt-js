@@ -144,15 +144,13 @@ export class ItemListComponent {
       this.filteredItems = [...this.items]; 
       console.log("Nie ma po czym");
       this.keywordslockedin = [];
-    this.checkerForFilter = false;
+      this.checkerForFilter = false;
       return;
     }
 
-    
-
     this.filteredItems = this.items.filter((item: Item) =>
       this.keywordslockedin.every((keyword) =>
-        item.allergen_details.some((allergen) => allergen.id === keyword.id)
+        item.allergen_details.every((allergen) => allergen.id !== keyword.id)
       )
     );
 
@@ -166,35 +164,35 @@ export class ItemListComponent {
 
   }
 
-includeAllergen(keyword: Allergen): void {
-  if(this.keywordslockedin.includes(keyword))
-  {
-    console.log("Usunięto" + keyword.name);
-    let target: number = this.keywordslockedin.indexOf(keyword);
-    if(target !== -1)
+  includeAllergen(keyword: Allergen): void {
+    if(this.keywordslockedin.includes(keyword))
     {
-         this.keywordslockedin.splice(target, 1);
-         console.log("Destroyed")
+      console.log("Usunięto" + keyword.name);
+      let target: number = this.keywordslockedin.indexOf(keyword);
+      if(target !== -1)
+      {
+          this.keywordslockedin.splice(target, 1);
+          console.log("Destroyed")
+      }
+      else
+      {
+        console.log("Aint no " + keyword.name + "in this town");
+      }
+  
     }
+
     else
     {
-      console.log("Aint no " + keyword.name + "in this town");
+      console.log("Dodano " + keyword);
+    this.keywordslockedin.push(keyword);
     }
- 
-  }
-
-  else
-  {
-     console.log("Dodano " + keyword);
-  this.keywordslockedin.push(keyword);
-  }
- 
   
-  for (let i: number = 0; i < this.keywordslockedin.length; i++) {
-    console.log(this.keywordslockedin[i]);
-  }
+    
+    for (let i: number = 0; i < this.keywordslockedin.length; i++) {
+      console.log(this.keywordslockedin[i]);
+    }
 
-}
+  }
 
 }
 
