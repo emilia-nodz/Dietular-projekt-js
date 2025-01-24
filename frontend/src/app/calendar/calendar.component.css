@@ -1,34 +1,5 @@
-/* CSS */
-.demo-inline-calendar-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #e0f2e9; /* Matches the greenish background color */
-    padding: 20px;
-    border-radius: 15px;
-  }
-  
-  .demo-inline-calendar-card {
+.demo-inline-calendar-card {
     width: 300px;
-    background-color: #dff4dc; /* Light green for the calendar card */
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Soft shadow for card elevation */
-    padding: 10px;
-  }
-  
-  .mat-calendar {
-    background-color: transparent; /* Ensures the calendar blends with the card */
-    border-radius: 10px; /* Matches the card's rounded corners */
-  }
-  
-  .mat-calendar-body-selected {
-    background-color: #b8e1bd !important; /* Changes the selected date background */
-    border-radius: 50%; /* Ensures selected date is a circle */
-  }
-  
-  .mat-calendar-body-cell-content {
-    font-size: 14px; /* Adjust font size if necessary */
-    color: #333; /* Ensures good contrast for text */
   }
 
   .mat-calendar-body-cell-content {
@@ -58,23 +29,3 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Add a shadow to the selected date */
   }
   
-  .mat-calendar-body-cell-content {
-    border: none; /* Remove any unintended borders */
-  }
-  .mat-calendar-body-cell-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%; /* Make it circular */
-    background-color: #f4f4f4; /* Background color */
-    box-shadow: none; /* Remove shadows if they are not needed */
-    border: none; /* Ensure no border is applied */
-  }
-  .mat-calendar {
-    display: block;
-    padding: 0;
-    margin: 0;
-  }
-      
