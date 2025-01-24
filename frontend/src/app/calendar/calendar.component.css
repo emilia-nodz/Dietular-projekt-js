@@ -1,31 +1,38 @@
-.demo-inline-calendar-card {
-    width: 300px;
+/* CSS */
+.demo-inline-calendar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #4b3629 !important;
   }
 
-  .mat-calendar-body-cell-content {
+  ::ng-deep span, ::ng-deep .mat-calendar-body-cell-content {
+    font-weight: bold;
+    color: #4b3629 !important;
+    
+  }
+
+.mat-calendar-body-cell-content {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 36px; /* Adjust the size of the circle */
-    height: 36px; /* Ensure it's a circle */
-    background-color: #f4f4f4; /* Light gray background for days */
-    border-radius: 50%; /* Make it circular */
-    font-size: 14px; /* Adjust font size */
-    color: #333; /* Text color */
-    transition: all 0.3s ease; /* Smooth hover effect */
-  }
-  
-  .mat-calendar-body-cell-content:hover {
-    background-color: #c8e6c9; /* Slightly darker green on hover */
-    cursor: pointer; /* Change cursor to pointer for interactivity */
-  }
-  
-  .mat-calendar-body-selected {
-    background-color: #7ecf92 !important; /* Custom color for selected day */
-    color: #fff !important; /* White text for better contrast on selected day */
-    border-radius: 10px !important; /* Change the circle to a rounded rectangle */
-    width: 36px; /* Keep it consistent with the day size */
-    height: 36px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Add a shadow to the selected date */
-  }
-  
+    background-color:#cdd9c7;
+}
+
+    .demo-inline-calendar-card {
+        width: 500px;
+        background-color: #cdd9c7;
+        color: #4b3629 !important;
+        font-weight: bold;
+        padding: 10px;
+    }
+    
+    ::ng-deep .mat-calendar-body-today{
+        border-color: #ebe8e4 !important;
+
+    }
+
+    ::ng-deep .mat-calendar-body-selected{
+        border-color: #ebe8e4 !important;
+        background-color: #ebe8e4 !important;
+    }
