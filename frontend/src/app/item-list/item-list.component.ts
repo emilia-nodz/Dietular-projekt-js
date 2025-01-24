@@ -36,8 +36,8 @@ export class ItemListComponent {
   checker: number = 0;
   checkerfordelete: number = -1;
   updateChecker: number | null = null;
-  checkerforfilter: boolean = false;
-  checkerforsort: boolean = false;
+  checkerForFilter: boolean = false;
+  checkerForSort: boolean = false;
 
   showDetails(x: number, filteredItems: Item[]) {
     if(this.checker!=x) {
@@ -49,21 +49,21 @@ export class ItemListComponent {
     }
   }
 
-  getfilterchoice() {
-    this.checkerforfilter = true;
+  getFilterChoice() {
+    this.checkerForFilter = true;
   }
 
-  turnofffilterchoice() {
+  turnOffFilterChoice() {
     this.keywordslockedin = [];
-    this.checkerforfilter = false;
+    this.checkerForFilter = false;
   }
 
-  getsortchoice() {
-    this.checkerforsort = true;
+  getSortChoice() {
+    this.checkerForSort = true;
   }
 
-  turnoffsortchoice() {
-    this.checkerforsort= false;
+  turnOffSortChoice() {
+    this.checkerForSort= false;
   }
 
   deleteThing(itemid: number, index: number) {
@@ -84,49 +84,49 @@ export class ItemListComponent {
     this.checkerfordelete = -1;
   }
 
-  sortalphasc() {
+  sortAlphAsc() {
     this.filteredItems.sort((a, b) => {
       if (a.name < b.name) return -1;  
       if (a.name > b.name) return 1;
       return 0;
     });
-    this.checkerforsort = false;
+    this.checkerForSort = false;
   }
-  sortalphdesc() {
+  sortAlphDesc() {
     this.filteredItems.sort((a, b) => {
       if (a.name < b.name) return 1; 
       if (a.name > b.name) return -1;
       return 0;
     })
-    this.checkerforsort = false;
+    this.checkerForSort = false;
   
   }
 
-  sortprotein() {
+  sortProtein() {
     this.filteredItems.sort((a, b) => {
       if (a.proteins < b.proteins) return -1; 
       if (a.proteins > b.proteins) return 1;
       return 0;
     })
-    this.checkerforsort = false;
+    this.checkerForSort = false;
   }
 
-  sortcalories() {
+  sortCalories() {
     this.filteredItems.sort((a, b) => {
       if (a.calories < b.calories) return -1; 
       if (a.calories > b.calories) return 1;
       return 0;
     })
-    this.checkerforsort = false;
+    this.checkerForSort = false;
   }
 
-  sortfat() {
+  sortFat() {
     this.filteredItems.sort((a, b) => {
       if (a.fats/a.weight*100 < b.fats/b.weight*100) return -1; 
       if (a.fats/a.weight*100 > b.fats/b.weight*100) return 1;
       return 0;
     })
-    this.checkerforsort = false;
+    this.checkerForSort = false;
   }
 
   update(itemId: number, indeksplacement: number): void {
@@ -137,14 +137,14 @@ export class ItemListComponent {
     
   }
   
-  Filter(): void {
+  filter(): void {
     console.log("Filtruje");
 
     if (this.keywordslockedin.length === 0) {
       this.filteredItems = [...this.items]; 
       console.log("Nie ma po czym");
       this.keywordslockedin = [];
-    this.checkerforfilter = false;
+    this.checkerForFilter = false;
       return;
     }
 
@@ -157,16 +157,16 @@ export class ItemListComponent {
     );
 
     this.keywordslockedin = [];
-    this.checkerforfilter = false;
+    this.checkerForFilter = false;
 
   }
 
-  Sort(): void {
+  sort(): void {
     console.log("Sortuje");
 
   }
 
-IncludeAllergen(keyword: Allergen): void {
+includeAllergen(keyword: Allergen): void {
   if(this.keywordslockedin.includes(keyword))
   {
     console.log("Usunięto" + keyword.name);

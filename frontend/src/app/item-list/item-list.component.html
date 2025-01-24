@@ -1,7 +1,7 @@
 <div class="main-container">
-<button class="btn-view" (click)="getfilterchoice()">Filter</button>
+<button class="btn-view" (click)="getFilterChoice()">Filter</button>
 
-<button class="btn-view" (click)="getsortchoice()">Sort</button>
+<button class="btn-view" (click)="getSortChoice()">Sort</button>
   <h1>Item list</h1>
 
     <ul>
@@ -33,7 +33,7 @@
               </div>
             }
 
-            @if(checkerforfilter === true)
+            @if(checkerForFilter === true)
             {
               <div class="filter-menu">
                 <h3>Select allergens</h3><br>
@@ -41,24 +41,24 @@
                   @for(allergen of allergens; track $index) {
                 <li class="next">
                 <p>{{allergen.name}}</p>
-                <input type="checkbox" (click)="IncludeAllergen(allergen)">
+                <input type="checkbox" (click)="includeAllergen(allergen)">
                 </li>
               }
                 </ul>
-                <button class="btn-view" (click)="Filter()">Confirm</button>
-                <button class="btn-view2" (click)="turnofffilterchoice()">Undo</button>
+                <button class="btn-view" (click)="filter()">Confirm</button>
+                <button class="btn-view2" (click)="turnOffFilterChoice()">Undo</button>
               </div>
             }
-            @if(checkerforsort === true)
+            @if(checkerForSort === true)
             {
              <div class = "filter-menu">
               <h3>Sort menu:</h3>
-              <button class="btn-view" (click)="sortalphasc()">Sort alphabetically A-Z</button>
-              <button class="btn-view" (click)="sortalphdesc()">Sort alphabetically Z-A</button>
-              <button class="btn-view" (click)="sortprotein()">Sort by most protein</button>
-              <button class="btn-view" (click)="sortcalories()">Sort by least calories</button>
-              <button class="btn-view" (click)="sortfat()">Sort by least fat %</button>
-              <button class="btn-view2" (click)="turnoffsortchoice()">Undo</button>
+              <button class="btn-view" (click)="sortAlphAsc()">Sort alphabetically A-Z</button>
+              <button class="btn-view" (click)="sortAlphDesc()">Sort alphabetically Z-A</button>
+              <button class="btn-view" (click)="sortProtein()">Sort by most protein</button>
+              <button class="btn-view" (click)="sortCalories()">Sort by least calories</button>
+              <button class="btn-view" (click)="sortFat()">Sort by least fat %</button>
+              <button class="btn-view2" (click)="turnOffSortChoice()">Undo</button>
              </div> 
             }
            
